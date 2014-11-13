@@ -1,6 +1,6 @@
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish]{babel}
+%\usepackage[spanish]{babel}
 \usepackage{hyperref}
 \usepackage{ulem}\normalem
 \usepackage{graphicx}
@@ -54,9 +54,87 @@ mas f\'acil construir y distribuir {\em Paquetes} especialmente
 con aquellas que dependen de otros paquetes.
 
 \end{frame}
-\section{Archivos Necesarios}
-\begin{frame}
-\alert 
+\section{Estructura Minima}
+\begin{verbatim}
+    cgsolpkg/
+            cgsolpkg/
+            *setup.py 
+            README.rst
+            MANIFEST.in
+            data/
+\end{verbatim}
+\begin{section}{setup.py}
+\begin{frame}{setup.py}
+\begin{verbatim}
+from setuptools import setup, find_packages  # Always prefer setuptools over distutils
+from codecs import open  # To use a consistent encoding
+from os import path
+
+with open(path.join(here, 'DESCRIPTION.rst'), encoding='utf-8') as f:
+    long_description = f.read()
+setup(
+    name='sample',
+
+    version='1.2.0',
+
+    description='A sample Python project for CGSOL',
+    long_description=long_description,
+
+    url='josueortega@debian.org.gt',
+
+    author='The Python Packaging Authority',
+    author_email='joseortega@debian.org.gt',
+
+    license='MIT',
+
+
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'Topic :: Software Development :: Build Tools',
+        'License :: OSI Approved :: MIT License',
+
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+    ],
+
+
+    keywords='sample setuptools development',
+
+    packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
+
+    install_requires=['peppercorn'],
+
+    extras_require = {
+        'dev': ['check-manifest'],
+        'test': ['coverage'],
+    },
+
+    # If using Python 2.6 or less, then these
+    # have to be included in MANIFEST.in as well.
+    package_data={
+        'sample': ['package_data.dat'],
+    },
+    data_files=[('my_data', ['data/data_file'])],
+    entry_points={
+        'console_scripts': [
+            'sample=sample:main',
+        ],
+    },
+)
+\end{verbatim}
+\end{frame}
+\begin{section}{Archivos Opcionales}
+\begin{frame}{Archivos Opcionales}
+\begin{itemize}
+  \item MANIFEST.in
+  \item README
+\end{itemize}
 \end{frame}
 \end{document}
 
