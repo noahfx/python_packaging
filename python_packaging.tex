@@ -14,44 +14,44 @@
 \begin{document}
 \begin{frame}
   \titlepage
-    {\tiny
-    \begin{center}
-      \begin{tabular}{l@{\hspace{1em}}l}    
-         licencia
-        & \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0 ---
-          Creative Commons Attribution-ShareAlike 3.0} \\       
-      \end{tabular}
-    \end{center}}
+      {\tiny
+        \begin{center}
+          \begin{tabular}{l@{\hspace{1em}}l}    
+            licencia
+            & \href{http://creativecommons.org/licenses/by-sa/3.0/}{CC BY-SA 3.0 ---
+              Creative Commons Attribution-ShareAlike 3.0} \\       
+          \end{tabular}
+      \end{center}}
 \end{frame}
 \section{¿Por Qu\'e empaquetar nuestros programas hechos en Python?}
 \begin{frame}{¿Por Qu\'e empaquetar nuestros programas hechos en Python?}
-\begin{itemize}
-\pause
-\item F\'acilidad de instalaci\'on (setuptools)
-\pause 
-\item F\'acilidad de compartir 
-\pause
-\item F\'acilidad de distribuci\'on (pypi, pip, easy\_install)
-\end{itemize}
+  \begin{itemize}
+    \pause
+  \item F\'acilidad de instalaci\'on (setuptools)
+    \pause 
+  \item F\'acilidad de compartir 
+    \pause
+  \item F\'acilidad de distribuci\'on (pypi, pip, easy\_install)
+  \end{itemize}
 \end{frame}
 
 \section{¿Qu\'e se necesita para empaquetar?}
 \begin{frame}{¿Qu\'e se necesita para empaquetar?}
-\begin{itemize}
-\pause
-\item Un programa escrito en Python :)
-\pause
-\item setuptools (Magia)
-\pause
-\item twine (opcional)
-\end{itemize}
+  \begin{itemize}
+    \pause
+  \item Un programa escrito en Python :)
+    \pause
+  \item setuptools (Magia)
+    \pause
+  \item twine (opcional)
+  \end{itemize}
 \end{frame}
 
 \subsection{setuptools}
 \begin{frame}{setuptools}
-Es una colecci\'on de mejoras de los Python {\bf distutils} que ayudan a hacer
-mas f\'acil construir y distribuir {\em Paquetes} especialmente
-con aquellas que dependen de otros paquetes.
+  Es una colecci\'on de mejoras de los Python {\bf distutils} que ayudan a hacer
+  mas f\'acil construir y distribuir {\em Paquetes} especialmente
+  con aquellas que dependen de otros paquetes.
 
 \end{frame}
 \section{Estructura Minima}
@@ -64,31 +64,75 @@ con aquellas que dependen de otros paquetes.
             data/
 \end{verbatim}
 \begin{section}{setup.py}
-\begin{frame}{setup.py}
-\begin{itemize}
-\item Name
-\pause
-\item Version
-\pause
-\item Packages
-\pause
-\item Metadata
-\pause
-\item Dependencies
-\pause
-\item Package Data
-\pause
-\item Data Files
-\pause
-\item Scripts
-\end{itemize}
-\end{frame}
-\begin{section}{Archivos Opcionales}
-\begin{frame}{Archivos Opcionales}
-\begin{itemize}
-  \item MANIFEST.in
-  \item README
-\end{itemize}
-\end{frame}
-\end{document}
+  \begin{frame}{setup.py}
+    \begin{itemize}
+    \item Name
+      \pause
+    \item Version
+      \pause
+    \item Packages
+      \pause
+    \item Metadata
+      \pause
+    \item Dependencies
+      \pause
+    \item Package Data
+      \pause
+    \item Data Files
+      \pause
+    \item Scripts
+    \end{itemize}
+  \end{frame}
+  \begin{section}{Archivos Opcionales}
+    \begin{frame}{Archivos Opcionales}
+      \begin{itemize}
+      \item MANIFEST.in
+        \pause
+      \item README
+      \end{itemize}
+    \end{frame}
+    \begin{section}{Desarrollando el Proyecto}
+      \begin{frame}[fragile]{Desarrollando el Proyecto}
+\begin{verbatim}
+  #setuptools way
+  python setup.py develop 
+  #pip way
+  pip install -e 
+\end{verbatim}
+      \end{frame}
+      \begin{section}{Empaquetando}
+        \subsection{PyPI}
+        \begin{frame}{PyPI}
+          \alert(Python Package Index) 
+          Es el Index de paquetes Python por default para la comunidad de Python. 
+          Esta abierto a todos las personas que desarrollan en Python para consumir y distribuir
+          sus paquetes
+
+          \alert https://pypi.python.org/pypi
+        \end{frame}
+        \begin{subsection}{Built Distributions vs Source Distributions}
+          \begin{frame}{Built Distributions}
+            Son distribuciones donde el manejador de paquetes solo se encarga de 
+            copiar los archivos a sus diretorios de destino. 
+          \end{frame}
+          \begin{frame}{Source Distributions(sdist)}
+            Son distribuciones (usualmente generadas con setuptools) que proveen la metadata 
+            y las fuentes necesarias para instalarlas con herramientas como pip o para generar
+            Built Distributions. 
+          \end{frame}
+
+          \begin{frame}[fragile]{Hora de la magia}
+\begin{verbatim}
+  python setup.py sdist
+\end{verbatim}
+          \end{frame}
+          \begin{section}{Publicando en PyPI}
+            \begin{frame}{Publicando en PyPI}
+              \begin{itemize}
+              \item Crear cuenta
+              \item Subir el paquete
+              \end{itemize}
+
+            \end{frame}
+          \end{document}
 
